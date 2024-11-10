@@ -79,3 +79,7 @@ Methods:
 - Order contains multiple Garments: The Order class will hold a collection of garments that are being ordered.
 - Supplier provides Fabric: A supplier provides various fabrics, so there’s a one-to-many relationship (one supplier can supply many fabrics).
 - Customer can place multiple Orders: A customer can place multiple orders, establishing a one-to-many relationship between Customer and Order.
+
+# UML Diagram:
+<img src="images/Diagram.png" alt="diagram of the application" width="500"/>
+
