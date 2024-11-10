@@ -59,6 +59,13 @@ class Supplier {
     public String contactInfo;
     private List<Fabric> suppliedFabrics = new ArrayList<Fabric>();
 
+    public Supplier(String id, String name, String contactInfo) {
+        this.id = id;
+        this.name = name;
+        this.contactInfo = contactInfo;
+        this.suppliedFabrics = new ArrayList<>();
+    }
+
     public void addFabric(Fabric fabric) {
         suppliedFabrics.add(fabric);
     }
