@@ -105,6 +105,26 @@ class Customer {
 
 }
 
+class Inventory {
+    public List<Garment> garments;
+
+    public void addGarment(Garment garment) {
+        garments.add(garment);
+    }
+
+    public void removeGarment(String id) {
+        for (Garment garment : garments) {
+            if (garment.id.equals(id)) {
+                garments.remove(garment);
+                System.out.println("Garment removed successfully!");
+                return;
+            }
+        }
+        System.out.println("Garment not found.");
+    }
+
+}
+
 public class GermentLabTaskWithJava {
 
     public static void main(String[] args) {
