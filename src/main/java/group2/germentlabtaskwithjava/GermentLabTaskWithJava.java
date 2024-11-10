@@ -118,6 +118,14 @@ class Customer {
     public String phone;
     List<Order> orders = new ArrayList<Order>();
 
+    public Customer(String customerId, String name, String email, String phone) {
+        this.customerId = customerId;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.orders = new ArrayList<>();
+    }
+
     public void placeOrder(Order order) {
         orders.add(order);
         System.out.println("Order placed successfully!");
