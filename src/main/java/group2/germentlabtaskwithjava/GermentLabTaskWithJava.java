@@ -78,6 +78,33 @@ class Order {
     }
 }
 
+class Customer {
+    public String customerId;
+    public String name;
+    public String email;
+    public String phone;
+    List<Order> orders = new ArrayList<Order>();
+
+    public void placeOrder(Order order) {
+        orders.add(order);
+        System.out.println("Order placed successfully!");
+        System.out.println("Order ID: " + order.orderId);
+    }
+
+    public void viewOrders() {
+        System.out.println("Orders placed by customer " + name + ":");
+        if (orders.isEmpty()) {
+            System.out.println("No orders found.");
+        } else {
+            for (Order order : orders) {
+                order.printOrderDetails();
+                System.out.println();
+            }
+        }
+    }
+
+}
+
 public class GermentLabTaskWithJava {
 
     public static void main(String[] args) {
