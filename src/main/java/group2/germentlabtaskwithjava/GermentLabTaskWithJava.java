@@ -50,14 +50,13 @@ class Fabric {
     public double calculateCost(double meters) {
         return pricePerMeter * meters;
     }
-
 }
 
 class Supplier {
     public String id;
     public String name;
     public String contactInfo;
-    private List<Fabric> suppliedFabrics = new ArrayList<Fabric>();
+    private List<Fabric> suppliedFabrics;
 
     public Supplier(String id, String name, String contactInfo) {
         this.id = id;
@@ -79,7 +78,7 @@ class Order {
     public String orderId;
     public Date orderDate;
     public double totalAmount;
-    public List<Garment> garments = new ArrayList<Garment>();
+    public List<Garment> garments;
 
     public Order(String orderId, Date orderDate) {
         this.orderId = orderId;
@@ -106,7 +105,7 @@ class Order {
         System.out.println("Total Amount: " + totalAmount);
         System.out.println("Garments:");
         for (Garment garment : garments) {
-            System.out.println("- " + garment.name + ": " + garment.price);
+            System.out.println("- " + garment.name + ": $" + garment.price);
         }
     }
 }
@@ -116,7 +115,7 @@ class Customer {
     public String name;
     public String email;
     public String phone;
-    List<Order> orders = new ArrayList<Order>();
+    private List<Order> orders;
 
     public Customer(String customerId, String name, String email, String phone) {
         this.customerId = customerId;
@@ -144,24 +143,30 @@ class Customer {
         }
     }
 
+    public List<Order> getOrders() {
+        return orders;
+    }
 }
 
 class Inventory {
-    public List<Garment> garments = new ArrayList<Garment>();
+    public List<Garment> garments;
+
+    public Inventory() {
+        this.garments = new ArrayList<>();
+    }
 
     public void addGarment(Garment garment) {
         garments.add(garment);
     }
 
     public void removeGarment(String id) {
-        for (Garment garment : garments) {
-            if (garment.id.equals(id)) {
-                garments.remove(garment);
-                System.out.println("Garment removed successfully!");
-                return;
-            }
+        Garment garmentToRemove = findGarment(id);
+        if (garmentToRemove != null) {
+            garments.remove(garmentToRemove);
+            System.out.println("Garment removed successfully!");
+        } else {
+            System.out.println("Garment not found.");
         }
-        System.out.println("Garment not found.");
     }
 
     public Garment findGarment(String id) {
@@ -172,12 +177,29 @@ class Inventory {
         }
         return null;
     }
-
 }
 
 public class GermentLabTaskWithJava {
-
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+
+        Garment garment1 = new Garment("G001", "Shirt", "Cotton shirt", "M", "Blue", 29.99, 10);
+        Garment garment2 = new Garment("G002", "Pants", "Denim jeans", "L", "Black", 49.99, 5);
+        Garment garment3 = new Garment("G003", "T-Shirt", "Cotton shirt", "L", "White", 39.99, 6);
+
+        Inventory inventory = new Inventory();
+        inventory.addGarment(garment1);
+        inventory.addGarment(garment2);
+        inventory.addGarment(garment3);
+
+        Order order1 = new Order("O001", new Date());
+        order1.addGarment(garment1);
+        order1.addGarment(garment2);
+        order1.addGarment(garment3);
+        order1.calculateTotalAmount();
+
+        Customer customer = new Customer("C001", "John Doe", "john@example.com", "123-456-7890");
+        customer.placeOrder(order1);
+
+        customer.viewOrders();
     }
 }
