@@ -13,6 +13,22 @@ class Garment {
         stockQuantity += quantity;
     }
 
+    double calculateDiscountPrice(double discountPercentage) {
+        double discountAmount = price * (discountPercentage / 100);
+        return price - discountAmount;
+    }
+}
+
+class Fabric {
+    String id;
+    String type;
+    String color;
+    double pricePerMeter;
+
+    double calculateCost(double meters) {
+        return pricePerMeter * meters;
+    }
+
 }
 
 public class GermentLabTaskWithJava {
