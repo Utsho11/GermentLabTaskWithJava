@@ -1,49 +1,81 @@
 package group2.germentlabtaskwithjava;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 class Garment {
-    String id;
-    String name;
-    String description;
-    String size;
-    String color;
-    double price;
-    int stockQuantity;
+    public String id;
+    public String name;
+    public String description;
+    public String size;
+    public String color;
+    public double price;
+    public int stockQuantity;
 
-    void updateStock(int quantity) {
+    public void updateStock(int quantity) {
         stockQuantity += quantity;
     }
 
-    double calculateDiscountPrice(double discountPercentage) {
+    public double calculateDiscountPrice(double discountPercentage) {
         double discountAmount = price * (discountPercentage / 100);
         return price - discountAmount;
     }
 }
 
 class Fabric {
-    String id;
-    String type;
-    String color;
-    double pricePerMeter;
+    public String id;
+    public String type;
+    public String color;
+    public double pricePerMeter;
 
-    double calculateCost(double meters) {
+    public double calculateCost(double meters) {
         return pricePerMeter * meters;
     }
 
 }
 
 class Supplier {
-    String id;
-    String name;
-    String contactInfo;
+    public String id;
+    public String name;
+    public String contactInfo;
     private List<Fabric> suppliedFabrics = new ArrayList<Fabric>();
 
-    void addFabric(Fabric fabric) {
+    public void addFabric(Fabric fabric) {
         suppliedFabrics.add(fabric);
     }
 
+    public List<Fabric> getSuppliedFabrics() {
+        return suppliedFabrics;
+    }
+}
+
+class Order {
+    public String orderId;
+    public Date orderDate;
+    public double totalAmount;
+    public List<Garment> garments = new ArrayList<Garment>();
+
+    public void addGarment(Garment garment) {
+        garments.add(garment);
+    }
+
+    public double calculateTotalAmount() {
+        for (Garment garment : garments) {
+            totalAmount += garment.price;
+        }
+        return totalAmount;
+    }
+
+    public void printOrderDetails() {
+        System.out.println("Order ID: " + orderId);
+        System.out.println("Order Date: " + orderDate);
+        System.out.println("Total Amount: " + totalAmount);
+        System.out.println("Garments:");
+        for (Garment garment : garments) {
+            System.out.println("- " + garment.name + ": " + garment.price);
+        }
+    }
 }
 
 public class GermentLabTaskWithJava {
