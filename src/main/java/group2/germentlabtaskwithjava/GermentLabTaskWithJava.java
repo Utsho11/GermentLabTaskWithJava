@@ -61,6 +61,7 @@ class Order {
     }
 
     public double calculateTotalAmount() {
+        totalAmount = 0;
         for (Garment garment : garments) {
             totalAmount += garment.price;
         }
@@ -106,7 +107,7 @@ class Customer {
 }
 
 class Inventory {
-    public List<Garment> garments;
+    public List<Garment> garments = new ArrayList<Garment>();
 
     public void addGarment(Garment garment) {
         garments.add(garment);
@@ -121,6 +122,15 @@ class Inventory {
             }
         }
         System.out.println("Garment not found.");
+    }
+
+    public Garment findGarment(String id) {
+        for (Garment garment : garments) {
+            if (garment.id.equals(id)) {
+                return garment;
+            }
+        }
+        return null;
     }
 
 }
