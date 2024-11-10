@@ -13,6 +13,17 @@ class Garment {
     public double price;
     public int stockQuantity;
 
+    public Garment(String id, String name, String description, String size, String color, double price,
+            int stockQuantity) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.size = size;
+        this.color = color;
+        this.price = price;
+        this.stockQuantity = stockQuantity;
+    }
+
     public void updateStock(int quantity) {
         stockQuantity += quantity;
     }
@@ -28,6 +39,13 @@ class Fabric {
     public String type;
     public String color;
     public double pricePerMeter;
+
+    public Fabric(String id, String type, String color, double pricePerMeter) {
+        this.id = id;
+        this.type = type;
+        this.color = color;
+        this.pricePerMeter = pricePerMeter;
+    }
 
     public double calculateCost(double meters) {
         return pricePerMeter * meters;
