@@ -1,5 +1,8 @@
 package group2.germentlabtaskwithjava;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class Garment {
     String id;
     String name;
@@ -27,6 +30,18 @@ class Fabric {
 
     double calculateCost(double meters) {
         return pricePerMeter * meters;
+    }
+
+}
+
+class Supplier {
+    String id;
+    String name;
+    String contactInfo;
+    private List<Fabric> suppliedFabrics = new ArrayList<Fabric>();
+
+    void addFabric(Fabric fabric) {
+        suppliedFabrics.add(fabric);
     }
 
 }
