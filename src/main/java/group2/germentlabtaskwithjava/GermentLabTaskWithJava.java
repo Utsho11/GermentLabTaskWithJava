@@ -81,6 +81,13 @@ class Order {
     public double totalAmount;
     public List<Garment> garments = new ArrayList<Garment>();
 
+    public Order(String orderId, Date orderDate) {
+        this.orderId = orderId;
+        this.orderDate = orderDate;
+        this.totalAmount = 0.0;
+        this.garments = new ArrayList<>();
+    }
+
     public void addGarment(Garment garment) {
         garments.add(garment);
     }
